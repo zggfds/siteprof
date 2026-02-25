@@ -204,7 +204,18 @@ def bot_welcome(message):
     
     bot.send_message(message.chat.id, f"Привет, {message.from_user.first_name}! Твоя секретная ссылка готова:", reply_markup=markup)
 
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+    print(f"Бот получил сообщение: {message.text}") # Это отобразится в логах Render
+    bot.reply_to(message, "Я тебя вижу! Пробую создать ссылку...")
+    welcome(message) # Вызывает твою основную функцию
+
+
 if __name__ == "__main__":
-    threading.Thread(target=lambda: bot.infinity_polling(), daemon=True).start()
+    # Локальный запуск (python main.py)
+    threading.Thread(target=lambda: bot.infinity_polling(timeout=10, long_polling_timeout=5), daemon=True).start()
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+else:
+    # Запуск на Render через Gunicorn
+    threading.Thread(target=lambda: bot.infinity_polling(timeout=10, long_polling_timeout=5), daemon=True).start()
