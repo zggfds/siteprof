@@ -113,8 +113,8 @@ async def cmd_start(message: types.Message):
 def run_bot_thread():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    # skip_updates=True помогает избежать ошибки 409 при перезагрузках
-    loop.run_until_complete(dp.start_polling(bot, skip_updates=True))
+    # handle_signals=False — это КЛЮЧЕВОЙ момент для работы в потоке
+    loop.run_until_complete(dp.start_polling(bot, skip_updates=True, handle_signals=False))
 
 # --- САЙТ (FLASK) ---
 @app.route('/')
