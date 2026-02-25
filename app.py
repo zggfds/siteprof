@@ -179,6 +179,9 @@ def welcome(message):
     
     bot.send_message(message.chat.id, "Ваша секретная ссылка для входа готова. Она одноразовая!", reply_markup=markup)
 
+# В самом низу файла:
 if __name__ == "__main__":
     threading.Thread(target=lambda: bot.infinity_polling(), daemon=True).start()
-    app.run(host='0.0.0.0', port=5000)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
