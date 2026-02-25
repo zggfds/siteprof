@@ -172,7 +172,7 @@ def welcome(message):
     })
     
     # Ссылка на вход (на Render замени адрес)
-    login_url = f"http://127.0.0.1:5000/auth/{secure_token}"
+    login_url = f"https://siteprof.onrender.com/auth/{secure_token}"
     
     markup = telebot.types.InlineKeyboardMarkup()
     markup.add(telebot.types.InlineKeyboardButton("ВОЙТИ В АККАУНТ 🛡️", url=login_url))
