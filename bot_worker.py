@@ -8,7 +8,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 API_SECRET = os.environ.get("API_SECRET", "default_secret_123")
 # Внутренний адрес на Render
-API_URL = "http://0.0.0.0:10000" 
+API_URL = "https://siteprof.onrender.com/" 
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
